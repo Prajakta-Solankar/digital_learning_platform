@@ -24,57 +24,66 @@ const TemplateCreation = (props) => {
     const { productName, title, selectedDate } = formData;
     const formattedDate = selectedDate ? selectedDate.toLocaleDateString() : "";
     const productCode = `${productName}${title}${formattedDate}`;
-    alert(`Generated Product Code: ${productCode}`);
+    const obj = {
+      name: productName,
+      title: title,
+      selectedDate: formattedDate,
+      productCode: productCode
+    };
+    props.addCourse(obj);
+    console.log(obj);
   };
 
   return (
-    <div className="container mx-auto mt-8">
-      <h1 className="text-3xl font-bold mb-4">Template Creation</h1>
+    <div className="  flex bg-slate-200 h-[90vh] items-center">
+      <div className="container mx-auto mt-8 w-96 ">
+        <h1 className="text-3xl font-bold mb-4">Add Course</h1>
 
-      {/* Form */}
-      <div className="grid grid-cols-2 gap-4">
-        <input
-          type="text"
-          name="productName"
-          placeholder="Product Name"
-          className="p-2 border"
-          onChange={handleInputChange}
-        />
+        {/* Form */}
+        <div className="grid grid-cols-1 gap-4">
+          <input
+            type="text"
+            name="productName"
+            placeholder="Product Name"
+            className="p-2 border"
+            onChange={handleInputChange}
+          />
 
-        <input
-          type="text"
-          name="title"
-          placeholder="Title"
-          className="p-2 border"
-          onChange={handleInputChange}
-        />
+          <input
+            type="text"
+            name="title"
+            placeholder="Title"
+            className="p-2 border"
+            onChange={handleInputChange}
+          />
 
-        {/* Date Picker */}
-        <DatePicker
-          selected={formData.selectedDate}
-          onChange={handleDateChange}
-          dateFormat="MM/dd/yyyy"
-          placeholderText="Select Date"
-          className="p-2 border"
-        />
+          {/* Date Picker */}
+          <DatePicker
+            selected={formData.selectedDate}
+            onChange={handleDateChange}
+            dateFormat="MM/dd/yyyy"
+            placeholderText="Select Date"
+            className="p-2 border"
+          />
+        </div>
+
+        {/* Button to Generate Product Code */}
+        <button
+          className="bg-black text-white p-2 mt-4"
+          onClick={generateProductCode}
+        >
+          Generate Product Code
+        </button>
+        {/* Display Generated Product Code */}
+        {formData.productName && (
+          <p className="mt-4">
+            Generated Product Code:{" "}
+            {`${formData.productName}${
+              formData.title
+            }${formData.selectedDate?.toLocaleDateString("en-US")}`}
+          </p>
+        )}
       </div>
-
-      {/* Button to Generate Product Code */}
-      <button
-        className="bg-blue-500 text-white p-2 mt-4"
-        onClick={generateProductCode}
-      >
-        Generate Product Code
-      </button>
-      {/* Display Generated Product Code */}
-      {formData.productName && (
-        <p className="mt-4">
-          Generated Product Code:{" "}
-          {`${formData.productName}${
-            formData.title
-          }${formData.selectedDate?.toLocaleDateString("en-US")}`}
-        </p>
-      )}
     </div>
   );
 };
