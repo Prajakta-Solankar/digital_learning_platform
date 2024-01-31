@@ -8,8 +8,10 @@ const TemplateCreation = (props) => {
   const [formData, setFormData] = useState({
     productName: "",
     title: "",
+    approved: false,
     selectedDate: null, // Use selectedDate to store the chosen date
   });
+  const [show, setShow] = useState(false);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -28,10 +30,11 @@ const TemplateCreation = (props) => {
       name: productName,
       title: title,
       selectedDate: formattedDate,
-      productCode: productCode
+      productCode: productCode,
+      approved: "false",
     };
     props.addCourse(obj);
-    console.log(obj);
+    setShow(true);
   };
 
   return (
@@ -75,7 +78,7 @@ const TemplateCreation = (props) => {
           Generate Product Code
         </button>
         {/* Display Generated Product Code */}
-        {formData.productName && (
+        {show && (
           <p className="mt-4">
             Generated Product Code:{" "}
             {`${formData.productName}${

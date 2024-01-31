@@ -1,5 +1,5 @@
 // src/Login.js
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Login = (props) => {
   const [email, setEmail] = useState('');
@@ -7,12 +7,17 @@ const Login = (props) => {
 
   const handleLogin = () => {
     // Add your login logic here
-    if(email === "prajaktasolankar99@gmail.com" && password === "Pra@123"){
+    
+    if (email === "prajaktasolankar99@gmail.com" && password === "Pra@123"){
+        localStorage.setItem("email",email);
         props.loginHandler();
     }
-    console.log('Email:', email);
-    console.log('Password:', password);
   };
+  useEffect(() => {
+    if(localStorage.getItem("email") === "prajaktasolankar99@gmail.com"){
+      props.loginHandler();
+    }
+  }, []);
 
   return (
     <div className="flex h-screen  bg-gray-200">

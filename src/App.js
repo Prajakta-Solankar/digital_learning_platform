@@ -4,6 +4,7 @@ import Login from "./pages/Login";
 import { Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import ListOfCourses from "./pages/ListOfCourses";
+import Contact from "./pages/Contact";
 
 function App() {
   const listOfCourses = [];
@@ -18,10 +19,11 @@ function App() {
     <>
       {isLogin ? (
         <>
-          <Navbar />
+          <Navbar listOfCourses= {listOfCourses}/>
           <Routes>
             <Route path="/create_course" element={<TemplateCreation addCourse={addCourse} />} />
             <Route path="/list_of_course" element={<ListOfCourses listOfCourses={listOfCourses}/>}/>
+            <Route path="/contact" element={<Contact/>} />
           </Routes>
           
         </>
