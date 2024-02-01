@@ -11,7 +11,7 @@ const Navbar = (props) => {
         for( let i of props.listOfCourses){
             if(i.productCode === productCode)setObj(i);
         }
-        if(obj === null){
+        if(obj.name === undefined){
             alert("No product mathches with the entered product code !");
         }else{
             setShow(true);
@@ -40,7 +40,7 @@ const Navbar = (props) => {
         </div>
       </div>
     </nav>
-    {show && <ApprovalCard  data={obj} setShow={setShow}/>}
+    {show && <ApprovalCard  data={obj} setShow={setShow} setObj={setObj}/>}
     </div>
   );
 };

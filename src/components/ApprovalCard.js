@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ApprovalCard = ({data, setShow}) => {
+const ApprovalCard = ({data, setShow, setObj}) => {
   // const data = {
   //   name: 'John Doe',
   //   title: 'Software Engineer',
@@ -14,11 +14,14 @@ const ApprovalCard = ({data, setShow}) => {
     console.log('Approved button clicked');
     data.approved = "true";
     setShow(false);
+    setObj({});
     // Add your logic here
   };
-  const handleBannedClick = ()=>{
-    console.log("banned handler");
+  const handleDiscardClick = ()=>{
+    console.log("Discard handler");
+    data.approved = "false";
     setShow(false);
+    setObj({});
   }
 
   return (
@@ -59,10 +62,10 @@ const ApprovalCard = ({data, setShow}) => {
         </button>
 
         <button
-          onClick={handleBannedClick}
+          onClick={handleDiscardClick}
           className="bg-blue-500 text-white p-2 rounded-md hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue active:bg-blue-800 ml-2"
         >
-          Banned
+          Discard
         </button>
       </div>
     </div>
